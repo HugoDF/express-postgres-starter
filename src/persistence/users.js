@@ -1,5 +1,5 @@
 const sql = require('sql-template-strings');
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const db = require('./db');
 
@@ -10,7 +10,7 @@ module.exports = {
 
       const {rows} = await db.query(sql`
       INSERT INTO users (id, email, password)
-        VALUES (${uuid()}, ${email}, ${hashedPassword})
+        VALUES (${uuidv4()}, ${email}, ${hashedPassword})
         RETURNING id, email;
       `);
 

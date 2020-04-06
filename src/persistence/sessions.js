@@ -1,10 +1,10 @@
 const sql = require('sql-template-strings');
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 const db = require('./db');
 
 module.exports = {
   async create(userId) {
-    const id = uuid();
+    const id = uuidv4();
     await db.query(sql`
     INSERT INTO sessions (id, user_id)
       VALUES (${id}, ${userId});
