@@ -31,7 +31,7 @@
     "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.3",
     "xo": "^0.28.3"
   },
   "xo": {
