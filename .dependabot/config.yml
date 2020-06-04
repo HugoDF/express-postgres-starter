@@ -1,0 +1,11 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    update_schedule: "daily"
+    directory: "."
+    default_assignees:
+      - "HugoDF"
+    automerged_updates:
+      - match:
+          dependency_type: "all"
+          update_type: "all"
