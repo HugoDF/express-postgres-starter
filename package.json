@@ -25,7 +25,7 @@
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "migrate": "^1.6.2",
-    "morgan": "^1.9.1",
+    "morgan": "^1.10.0",
     "pg": "^8.0.3",
     "sql-template-strings": "^2.2.2",
     "uuid": "^8.1.0"
