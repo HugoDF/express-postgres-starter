@@ -1,5 +1,5 @@
 const sql = require('sql-template-strings');
-const { v4: uuidv4 } = require('uuid');
+const {v4: uuidv4} = require('uuid');
 const bcrypt = require('bcrypt');
 const db = require('./db');
 

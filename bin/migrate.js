@@ -22,7 +22,7 @@ new Promise((resolve, reject) => {
         reject(new Error('Command is not a function'));
       }
 
-      set[command](err => {
+      set[command]((err) => {
         if (err) reject(err);
         resolve();
       });
@@ -34,7 +34,7 @@ new Promise((resolve, reject) => {
     // eslint-disable-next-line unicorn/no-process-exit
     process.exit(0);
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error.stack);
     // eslint-disable-next-line unicorn/no-process-exit
     process.exit(1);

@@ -1,24 +1,25 @@
 const Session = require('../persistence/sessions');
 
-const sessionMiddleware = async (req, res, next) => {
-  if (!req.session.id) {
-    return res.sendStatus(401);
+const sessionMiddleware = async (request, response, next) => {
+  if (!request.session.id) {
+    return response.sendStatus(401);
   }
 
   try {
-    const session = await Session.find(req.session.id);
+    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
+    const session = await Session.find(request.session.id);
     if (!session) {
-      req.session.id = null;
-      return res.sendStatus(401);
+      request.session.id = null;
+      return response.sendStatus(401);
     }
 
-    req.userId = session.userId;
+    request.userId = session.userId;
     next();
   } catch (error) {
     console.error(
-      `SessionMiddleware(${req.session.id}) >> Error: ${error.stack}`
+      `SessionMiddleware(${request.session.id}) >> Error: ${error.stack}`
     );
-    return res.sendStatus(500);
+    return response.sendStatus(500);
   }
 };
 
