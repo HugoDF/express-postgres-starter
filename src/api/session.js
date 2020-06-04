@@ -8,40 +8,41 @@ const sessionMiddleware = require('../middleware/session-middleware');
 
 const router = new Router();
 
-router.post('/', async (req, res) => {
+router.post('/', async (request, response) => {
   try {
-    const {email, password} = req.body;
+    const {email, password} = request.body;
+    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const user = await User.find(email);
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(403).json({});
+      return response.status(403).json({});
     }
 
     const sessionId = await Session.create(user.id);
-    req.session.id = sessionId;
-    res.status(201).json();
+    request.session.id = sessionId;
+    response.status(201).json();
   } catch (error) {
     console.error(
-      `POST session ({ email: ${req.body.email} }) >> ${error.stack})`
+      `POST session ({ email: ${request.body.email} }) >> ${error.stack})`
     );
-    res.status(500).json();
+    response.status(500).json();
   }
 });
 
-router.get('/', sessionMiddleware, (req, res) => {
-  res.json({userId: req.userId});
+router.get('/', sessionMiddleware, (request, response) => {
+  response.json({userId: request.userId});
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/', async (request, response) => {
   try {
-    if (req.session.id) {
-      await Session.delete(req.session.id);
+    if (request.session.id) {
+      await Session.delete(request.session.id);
     }
 
-    req.session.id = null;
-    res.status(200).json();
+    request.session.id = null;
+    response.status(200).json();
   } catch (error) {
     console.error(`DELETE session >> ${error.stack}`);
-    res.status(500).json();
+    response.status(500).json();
   }
 });
 
