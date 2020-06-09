@@ -20,7 +20,7 @@
   "author": "Hugo Di Francesco",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "client-sessions": "^0.8.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
