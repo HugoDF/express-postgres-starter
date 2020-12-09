@@ -28,7 +28,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "sql-template-strings": "^2.2.2",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.6",
