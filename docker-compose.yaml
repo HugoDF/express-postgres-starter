@@ -3,6 +3,8 @@ version: "3"
 services:
   app:
     build: .
+    depends_on:
+      - postgres
     environment:
       DATABASE_URL: postgres://user:pass@postgres:5432/db
       NODE_ENV: development
