@@ -1,14 +1,21 @@
-const {Router} = require('express');
-const bcrypt = require('bcrypt');
+import express from 'express';
+import bcrypt from 'bcrypt';
+import {Request} from 'express';
 
 const User = require('../persistence/users');
 const Session = require('../persistence/sessions');
 
 const sessionMiddleware = require('../middleware/session-middleware');
 
-const router = new Router();
+const router = express.Router();
 
-router.post('/', async (request, response) => {
+export interface sessionRequest extends Request
+{
+  session: {id: string};
+  userId: string;
+}
+
+router.post('/', async (request: sessionRequest, response) => {
   try {
     const {email, password} = request.body;
     // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
@@ -28,11 +35,11 @@ router.post('/', async (request, response) => {
   }
 });
 
-router.get('/', sessionMiddleware, (request, response) => {
+router.get('/', sessionMiddleware, (request: sessionRequest, response) => {
   response.json({userId: request.userId});
 });
 
-router.delete('/', async (request, response) => {
+router.delete('/', async (request: sessionRequest, response) => {
   try {
     if (request.session.id) {
       await Session.delete(request.session.id);
@@ -46,4 +53,4 @@ router.delete('/', async (request, response) => {
   }
 });
 
-module.exports = router;
+export default router;
