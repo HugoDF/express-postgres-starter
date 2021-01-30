@@ -3,7 +3,7 @@ import session from './session';
 
 const router = express.Router();
 
-const user = require('./user');
+import user from './user';
 
 router.get('/test', (request, response) =>{
   return response.status(200)

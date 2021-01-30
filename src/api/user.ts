@@ -3,9 +3,14 @@ import express from "express";
 
 const router = express.Router();
 
+router.get('/test', (request, response) =>{
+  return response.status(200)
+    .json({message: 'paresh'});
+});
+
 router.post('/', async (request, response) => {
   try {
-    const {email, password} = request.body;
+    let {email, password}: {email: string,  password: string} = request.body;
     if (!email || !password) {
       return response
         .status(400)
@@ -26,4 +31,4 @@ router.post('/', async (request, response) => {
   }
 });
 
-module.exports = router;
+export default router;

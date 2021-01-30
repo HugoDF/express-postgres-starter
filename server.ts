@@ -8,7 +8,6 @@ const {SESSION_SECRET} = require('../config');
 
 const app = express();
 import api from "./src/api";
-//const api = require('./src/api');
 
 app.get('/', (request, response) => response.sendStatus(200));
 app.get('/health', (request, response) => response.sendStatus(200));

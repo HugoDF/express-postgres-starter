@@ -1,6 +1,5 @@
-import express from 'express';
+import express, { Request } from 'express';
 import bcrypt from 'bcrypt';
-import {Request} from 'express';
 
 const User = require('../persistence/users');
 const Session = require('../persistence/sessions');
@@ -9,9 +8,8 @@ const sessionMiddleware = require('../middleware/session-middleware');
 
 const router = express.Router();
 
-export interface sessionRequest extends Request
-{
-  session: {id: string};
+export interface sessionRequest extends Request {
+  session: { id: string };
   userId: string;
 }
 
