@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/."
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 99
+  assignees:
+  - HugoDF
+  ignore:
+  - dependency-name: xo
+    versions:
+    - 0.37.1
+    - 0.38.1
+    - 0.38.2
