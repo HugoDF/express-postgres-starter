@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12",
-    "xo": "^0.36.1"
+    "xo": "^0.54.0"
   },
   "xo": {
     "prettier": true,
